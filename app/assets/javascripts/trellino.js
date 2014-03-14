@@ -3,6 +3,14 @@ window.Trellino = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function () {    
+  Data: {},
+  initialize: function() {
+    window.Trellino.Data.boards = new Trellino.Collections.Boards();
+    new Trellino.Routers.AppRouter();
+    Backbone.history.start();
   }
 };
+
+$(document).ready(function(){
+  Trellino.initialize();
+});
