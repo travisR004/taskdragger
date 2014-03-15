@@ -1,1 +1,16 @@
-<h1> <%= board.escape("title") %>
+<h1> <%= board.escape("title") %></h1>
+<div class="lists"></div>
+
+<div class="hidden" id="list-form">
+  <form id="new-list-form">
+    <input type="text" name="list[title]">
+
+    <button id="create-list">Add List</button>
+  </form>
+</div>
+
+<div id="new-list-button">
+<button id="new-list">Add List</button>
+</div>
+
+<a href="#"> Back to Index </a>

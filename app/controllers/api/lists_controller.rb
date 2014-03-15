@@ -6,8 +6,9 @@ class Api::ListsController < ApplicationController
   end
 
   def show
+    fail
     @list = List.find(params[:list_id])
-    render json: @list
+    render json: @list.to_json(include: :cards)
   end
 
   def create

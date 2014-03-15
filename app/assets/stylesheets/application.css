@@ -34,10 +34,10 @@ input#logout, input#logout{
 div#content {
   margin:0px auto;
   width: auto;
-  
+
   padding: 10px;
   margin-bottom: 10px;
-  
+
   overflow-x: scroll;
 }
 
@@ -77,6 +77,13 @@ ul {
 li {
   padding-top: 2px;
   padding-left: 0;
+}
+
+.list-item {
+  margin: 10px;
+  float: left;
+  border: solid 1px;
+  background-color: #ccc;
 }
 
 

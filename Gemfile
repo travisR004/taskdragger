@@ -47,9 +47,7 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'jquery-ui-rails'
-gem 'underscore-rails'
 gem 'backbone-on-rails'
-gem 'backbone-relational-rails'
 gem 'rake', '10.1.1'
 gem 'bcrypt-ruby', '~> 3.0.0'
 group :development, :test do

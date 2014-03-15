@@ -11,13 +11,13 @@ class Api::BoardsController < ApplicationController
     @boards.each { |board| @cards << board.cards }
     @myID = current_user.id
 
-    render :json => @boards
+    render :json => @boards.to_json(:include => [{:lists => {:include => :cards}}, :members])
   end
 
   def show
-    @board = Board.find(params[:id])
+    @board = Board.includes(:lists, :cards).find(params[:id])
 
-    render json: @board.to_json(include: :lists)
+    render :json => @board.to_json(:include => [{:lists => {:include => :cards}}, :members])
   end
 
   def create
