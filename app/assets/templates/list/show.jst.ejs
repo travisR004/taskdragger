@@ -1,21 +1,21 @@
 <div class="list-item">
   <%= list.escape('title') %>
-  <div class="cards<%= list.escape("id") %>">
+  <div class="cards<%= list.escape("id") %>"></div>
 
-  <div class="add-cards">
+  <div class="add-cards<%= list.escape("id") %>">
 
-    <button id="add-card">Add Card</button>
+    <button class="add-card" id="add-card<%= list.escape("id") %>">Add Card</button>
 
-    <form id="card-form" class="hidden">
+    <form id="card-form<%= list.escape("id") %>" class="card-form hidden">
       <label>Title
-      <input type="text" name="card[title]">
+        <input type="text" name="card[title]">
       </label>
-      <label>Description
-      <textarea name="card[description]"></textarea>
-      </label>
-      <button class="create-card">Add Card</button>
-    </form>
-</div>
-  </div>
 
+      <label>Description
+        <textarea name="card[description]"></textarea>
+      </label>
+
+      <button class="create-card btn btn-primary">Add Card</button>
+    </form>
+  </div>
 </div>

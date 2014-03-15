@@ -4,9 +4,7 @@ window.Trellino.Models.Board = Backbone.Model.extend({
   parse: function(jsonResp){
     var board = this
     if(jsonResp.lists){
-      jsonResp.lists.forEach(function(list){
-        board.lists().set(Trellino.Models.List.prototype.parse(list));
-      })
+        board.lists().set(jsonResp.lists);
       delete jsonResp.lists;
     }
       return jsonResp

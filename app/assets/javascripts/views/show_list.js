@@ -8,8 +8,8 @@ window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
   template: JST['list/show'],
 
   events: {
-    "click button#add-card": "newCardForm",
-    "submit form#card-form": "createCard"
+    "click button.add-card": "newCardForm",
+    "submit form.card-form": "createCard"
   },
 
   refreshCards: function(){
@@ -33,17 +33,16 @@ window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
 
   newCardForm: function(event){
     event.preventDefault()
-    $("#card-form").toggleClass("hidden")
-    $("#add-card").toggleClass("hidden")
+    $("#card-form" + this.model.id).toggleClass("hidden")
+    $("#add-card" + this.model.id).toggleClass("hidden")
    },
 
   createCard: function(event){
     event.preventDefault();
-    $("#card-form").toggleClass("hidden")
-    $("#add-card").toggleClass("hidden")
+    $("#card-form" + this.model.id).toggleClass("hidden")
+    $("#add-card"+ this.model.id).toggleClass("hidden")
     var card = $(event.currentTarget).serializeJSON()["card"];
     card.list_id = this.model.id;
-    var listView = this
     // hack
     if(this.model.cards().length > 0){
       card.rank = parseInt(this.model.cards().models[this.model.cards().length - 1].escape("rank")) + 1
