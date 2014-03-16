@@ -1,6 +1,7 @@
 window.Trellino.Views.ShowCard = Backbone.View.extend({
   initialize: function() {
     $(this.$el).draggable({
+      connectToSortable: "#list" + this.model.escape("list_id"),
       revert: "invalid"
     });
     $(this.$el).data("backbone-view", this);

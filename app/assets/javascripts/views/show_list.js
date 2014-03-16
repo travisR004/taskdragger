@@ -1,9 +1,9 @@
 window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
   initialize: function(){
-    this.listenTo(this.model, 'sync add', this.render);
-    this.listenTo(this.model, 'add sync', this.makeDroppable)
+    this.listenTo(this.model, 'sync add change reset refresh', this.render);
+    this.listenTo(this.model, 'add sync', this.makeDroppable);
     this.listenTo(this.model.cards(), 'add', this.addCard);
-    this.listenTo(this.model.cards(), 'remove destroy', this.removeCard)
+    this.listenTo(this.model.cards(), 'remove', this.removeCard);
     this.refreshCards();
   },
 
@@ -21,14 +21,15 @@ window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
 
   makeDroppable: function(){
     var list = this.model
-    var listView = this
+    $(".list" + list.id).sortable({
+      revert: true,
+      connectWith: ".list" + list.id
+    });
     this.$el.children().droppable({
       drop: function(event, ui) {
         $(this).droppable('option', 'accept', ui.draggable);
         var model =$(ui.draggable).data("backbone-view").model
-        model.save({"list_id": list.id}, {success: function(){
-          list.fetch()
-        }})
+        model.save({"list_id": list.id}, {wait: true})
       }
     });
   },
