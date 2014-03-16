@@ -1,21 +1,32 @@
-<div class="list-item">
+<div class="list-item" id="list-item<%= list.escape("id") %>">
+  <a href="#" class="hidden delete-list" id="delete-list<%= list.escape("id") %>" data-toggle="popover" data-placement="right" data-container="body"
+    data-content="<a href='' id='delete-list' data-list='<%= list.get("id") %>'>Remove List</a>">
+    *
+  </a>
+
   <%= list.escape('title') %>
-  <div class="cards<%= list.escape("id") %>"></div>
+
+
+  <div class="list<%= list.escape("id") %>"></div>
 
   <div class="add-cards<%= list.escape("id") %>">
 
-    <button class="add-card" id="add-card<%= list.escape("id") %>">Add Card</button>
+    <button
+      class="add-card btn btn-primary"
+      id="add-card<%= list.escape("id") %>">Add Card
+    </button>
 
     <form id="card-form<%= list.escape("id") %>" class="card-form hidden">
       <label>Title
-        <input type="text" name="card[title]">
+        <input type="text" name="card[title]" class="card-input" id="card-title<%= list.escape("id") %>">
       </label>
 
       <label>Description
-        <textarea name="card[description]"></textarea>
+        <textarea class="card-input" name="card[description]" id="card-description<%= list.escape("id") %>"></textarea>
       </label>
 
       <button class="create-card btn btn-primary">Add Card</button>
+      <button id="never-mind-card" class="btn btn-warning">x</button>
     </form>
   </div>
 </div>

@@ -16,6 +16,7 @@
 //= require underscore
 //= require serialize_json
 //= require backbone
+//= require bootstrap
 //= require trellino
 //= require_tree ../templates
 //= require_tree ./models

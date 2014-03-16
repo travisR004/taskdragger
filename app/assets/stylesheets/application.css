@@ -26,6 +26,9 @@ span.title {
   top: 7px;
   font-style: italic;
 }
+.delete-list{
+  float: right;
+}
 
 input#logout, input#logout{
   background-color: white;
@@ -39,6 +42,10 @@ div#content {
   margin-bottom: 10px;
 
   overflow-x: scroll;
+}
+
+div#delete-list{
+  float: right;
 }
 
 .white_area {
@@ -55,7 +62,7 @@ div.board_members {
 }
 
 button.newList {
-  margin: 10px 0;
+  margin: 10px;
 }
 
 button#deleteBoard {
@@ -73,26 +80,23 @@ ul {
   margin: 0;
 }
 
-
 li {
   padding-top: 2px;
   padding-left: 0;
 }
 
 .list-item {
+  width: 15%;
+  padding: 5px;
   margin: 10px;
   float: left;
   border: solid 1px;
+  border-radius: 5px;
   background-color: #ccc;
 }
 
-
 .hidden {
 	display: none;
-}
-
-input[type="text"] {
-  width: inherit;
 }
 
 button, input[type="submit"] {
@@ -105,4 +109,16 @@ button, input[type="submit"] {
 button:hover, input[type="submit"]:hover {
   background-color: transparent;
   color: blue;
+}
+
+.card-input {
+  padding: 10px;
+  width: 80%;
+}
+
+.card {
+  background-color: white;
+  border: solid 1px;
+  border-radius: 5px;
+  text-align: center;
 }

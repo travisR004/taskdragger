@@ -2,13 +2,13 @@ class Api::ListsController < ApplicationController
 
   def index
     @lists = List.where("board_id = ?", params[:board_id])
-    render json: @lists
+    render json: @lists.to_json(include: :cards)
   end
 
   def show
     fail
     @list = List.find(params[:list_id])
-    render json: @list.to_json(include: :cards)
+    render json: @list
   end
 
   def create

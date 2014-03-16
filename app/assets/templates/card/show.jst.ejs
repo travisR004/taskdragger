@@ -1,1 +1,8 @@
-<p><%= card.escape("title") %></p>
+<div class="card" id="card<%= card.escape("id") %>" data-backbone-view="<%= this %>">
+  <%= card.escape("title") %>
+
+
+  <div class="hidden" id="delete-card-button<%= card.escape("id") %>">
+    <button id="delete-card" class="btn-xs btn-danger">Remove</button>
+  </div>
+<div>

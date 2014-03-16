@@ -8,6 +8,10 @@ window.Trellino.Collections.Lists = Backbone.Collection.extend({
     return url;
   },
 
+  comparator: function(list){
+    return list.get('rank')
+  },
+
   model: Trellino.Models.List,
 
   getOrFetch: function(id){

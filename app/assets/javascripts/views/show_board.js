@@ -9,7 +9,9 @@ window.Trellino.Views.ShowBoard = Backbone.CompositeView.extend({
 
   events: {
     "click button#new-list": "newListForm",
-    "submit form#new-list-form": "createList"
+    "submit form#new-list-form": "createList",
+    "click button#delete-board": "deleteBoard",
+    "click button#never-mind": "newListForm"
   },
 
   refreshLists: function(){
@@ -33,16 +35,24 @@ window.Trellino.Views.ShowBoard = Backbone.CompositeView.extend({
     return this
   },
 
+  deleteBoard: function(event){
+    event.preventDefault();
+    this.model.destroy({
+         success: function(){
+           Backbone.history.navigate("", {trigger: true})
+         }
+       });
+  },
+
   newListForm: function(event){
-    event.preventDefault()
+    event.preventDefault();
     $("#list-form").toggleClass("hidden")
     $("#new-list-button").toggleClass("hidden")
    },
 
   createList: function(event){
     event.preventDefault();
-    $("#list-form").toggleClass("hidden")
-    $("#new-list-button").toggleClass("hidden")
+    this.newListForm(event)
     var list = $(event.currentTarget).serializeJSON()["list"];
     list.board_id = this.model.id;
     // hack
@@ -52,6 +62,7 @@ window.Trellino.Views.ShowBoard = Backbone.CompositeView.extend({
       list.rank = 1
     }
     this.model.lists().create(list)
+    $('#list-title').val("");
    }
 
 })
