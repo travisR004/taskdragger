@@ -1,13 +1,9 @@
 window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
   initialize: function(){
-    $(this.$el).droppable({
-      drop: function(ev, ui){
-        var model = $(ui.draggable).data("backbone-view").model
-      }
-    })
     this.listenTo(this.model, 'sync add', this.render);
+    this.listenTo(this.model, 'add sync', this.makeDroppable)
     this.listenTo(this.model.cards(), 'add', this.addCard);
-    this.listenTo(this.model.cards(), 'remove', this.removeCard)
+    this.listenTo(this.model.cards(), 'remove destroy', this.removeCard)
     this.refreshCards();
   },
 
@@ -23,19 +19,33 @@ window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
     "click #delete-list": "removeList",
   },
 
+  makeDroppable: function(){
+    var list = this.model
+    var listView = this
+    this.$el.children().droppable({
+      drop: function(event, ui) {
+        $(this).droppable('option', 'accept', ui.draggable);
+        var model =$(ui.draggable).data("backbone-view").model
+        model.save({"list_id": list.id}, {success: function(){
+          list.fetch()
+        }})
+      }
+    });
+  },
+
   removeCard: function(card){
+    var listView = this;
+    var cardShowView =
+    _(this.subviews()[".list" + listView.model.id]).find(function(subview){
+      return subview.model == card;
+    });
+
     this.removeSubview(".list" + this.model.id, cardShowView)
   },
 
   removeList: function(event){
     event.preventDefault();
-    var board_id = this.model.escape("board_id")
-    var listId = $(event.currentTarget).data("list")
-    var list = Trellino
-    this.model.destroy({success: function(){
-      Backbone.history.navigate("#/boards/" + board_id, {trigger: true})
-      }
-    })
+    this.model.destroy()
   },
 
   showPopover: function(event){
@@ -64,6 +74,7 @@ window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
     var renderedContent = this.template({ list: this.model });
     this.$el.html(renderedContent)
     this.renderSubviews();
+    this.makeDroppable();
     return this
   },
 

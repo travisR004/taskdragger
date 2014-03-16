@@ -1,6 +1,8 @@
 window.Trellino.Views.ShowCard = Backbone.View.extend({
   initialize: function() {
-    $(this.$el).draggable();
+    $(this.$el).draggable({
+      revert: "invalid"
+    });
     $(this.$el).data("backbone-view", this);
     this.listenTo(this.model,
                   "add sync change remove reset",
@@ -26,22 +28,22 @@ window.Trellino.Views.ShowCard = Backbone.View.extend({
 
   deleteCard: function(event){
     event.preventDefault;
-    var card = this;
-    var board_id;
-    debugger
-    Trellino.Data.boards.forEach(function(board){
-      if( board.lists() ){
-        board.lists().forEach(function(list){
-          if (list.id === card.model.get("list_id")){
-            board_id = list.get("board_id");
-          }
-        })
-      }
-    });
-    this.model.destroy({success: function(){
-      Backbone.history.navigate("#/boards/" + board_id, {trigger: true})
-      }
-    })
+    this.model.destroy();
+    // var card = this;
+  //   var board_id;
+  //   Trellino.Data.boards.forEach(function(board){
+  //     if( board.lists() ){
+  //       board.lists().forEach(function(list){
+  //         if (list.id === card.model.get("list_id")){
+  //           board_id = list.get("board_id");
+  //         }
+  //       })
+  //     }
+  //   });
+    // this.model.destroy({success: function(){
+   //    Backbone.history.navigate("#/boards/" + board_id, {trigger: true})
+   //    }
+   //  })
   },
 
   render: function(){
