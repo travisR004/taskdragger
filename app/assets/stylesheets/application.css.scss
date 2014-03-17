@@ -31,6 +31,7 @@ body {
   padding-left: 0px;
   width: 1606px;
   .ui-sortable-placeholder {
+    white-space: nowrap;
     visibility: visible !important;
     background-color: #4389B1 !important;
     border-radius: 5px;
@@ -185,12 +186,17 @@ a#delete-list {
   color: #393939;
 }
 
-button#delete-card-button {
+button#delete-card {
   float: right;
+  height: 20px;
 }
 
 .inline {
   float: left;
+}
+
+.title {
+  margin: 25px;
 }
 
 

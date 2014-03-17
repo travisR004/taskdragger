@@ -1,9 +1,8 @@
 window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
   initialize: function(){
     this.$el = $('<li class="inline"></li>')
-    this.listenTo(this.model, 'sync add change reset refresh', this.render);
-    this.listenTo(this.model, 'add sync', this.makeDroppable);
-    this.listenTo(this.model.cards(), 'add sync', _.debounce(this.addCard, 100));
+    this.listenTo(this.model, 'sync add', this.render);
+    this.listenTo(this.model.cards(), 'add', this.addCard);
     this.listenTo(this.model.cards(), 'remove', this.removeCard);
     this.refreshCards();
   },
@@ -19,23 +18,32 @@ window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
     "mouseenter .list-item": "showDelete",
     "mouseleave .list-item": "showDelete",
     "click .delete-list": "showPopover",
-    "click #delete-list": "removeList"
+    "click #delete-list": "removeList",
+    "sortupdate .list": "updateSort"
+  },
+
+  updateSort: function(event, ui, list){
+    event.stopPropagation();
+    var i = 1
+    var that  = this;
+    $(".list" + that.model.id).children().each(function(){
+      var card;
+      var cardId = parseInt($(this).children().attr("id").slice(4))
+      Trellino.Data.lists.forEach(function(list){
+         if(list.cards().get(cardId)){
+           card = list.cards().get(cardId)
+         }
+      })
+      card.save({"list_id": that.model.id, "rank": i})
+      i ++;
+    })
   },
 
   makeSortable: function(){
     var list = this.model
     $(".list" + list.id).sortable({
       connectWith: ".list",
-      update: function(event, ui, list){
-        var i = 1
-        $(this).children().each(function(){
-          var cardId = parseInt($(this).children().attr("id").slice(4))
-          var card = Trellino.Data.cards.get(cardId)
-          var listId = parseInt($(this).parent().attr("class").slice(4))
-          card.save({"list_id": listId, "rank": i})
-          i ++;
-        })
-      }
+      opacity: 0.8
     });
   },
 
@@ -56,8 +64,8 @@ window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
 
   showPopover: function(event){
     event.preventDefault();
-    var listItem = "#list-item" + this.model.id
-    $(event.currentTarget).popover({html: true, container: listItem})
+    var listItem = this.$('.list-item')
+    $(event.currentTarget).popover({html: true, container: listItem, animation: true})
   },
 
   showDelete: function(){
@@ -81,6 +89,8 @@ window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
     this.$el.html(renderedContent)
     this.renderSubviews();
     this.makeSortable();
+    var listItem = this.$('.list-item');
+    $(".delete-list").popover({html: true, container: listItem, animation: true})
     return this
   },
 

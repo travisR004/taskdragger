@@ -1,6 +1,5 @@
 window.Trellino.Collections.Cards = Backbone.Collection.extend({
   initialize: function(models, options){
-    // this.list = options.list;
   },
 
   url: "/api/cards",

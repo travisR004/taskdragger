@@ -1,6 +1,6 @@
 window.Trellino.Views.ShowBoard = Backbone.CompositeView.extend({
   initialize: function(){
-    this.listenTo(this.model, 'sync add', this.render, 50);
+    this.listenTo(this.model, 'sync add', this.render);
     this.listenTo(this.model.lists(), 'add', this.addList);
     this.listenTo(this.model.lists(), 'remove', this.removeList)
     this.refreshLists();
@@ -12,11 +12,25 @@ window.Trellino.Views.ShowBoard = Backbone.CompositeView.extend({
     "click button#new-list": "newListForm",
     "submit form#new-list-form": "createList",
     "click button#delete-board": "deleteBoard",
-    "click button#never-mind": "newListForm"
+    "click button#never-mind": "newListForm",
+    "sortupdate .lists": "updateSort"
+  },
+
+  updateSort: function(event, ui){
+    var i = 1;
+    var that = this;
+    $(".lists").children().children().each(function(){
+      debugger
+      var listId = parseInt($(this).attr("id").slice(9));
+      var list = that.model.lists().get(listId);
+      list.save({rank: i});
+      i ++;
+    });
   },
 
   makeSortable: function(){
     $(".lists").sortable({
+      patch: true
     })
   },
 

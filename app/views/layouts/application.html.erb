@@ -9,11 +9,10 @@
 <body class="body">
   <nav class="navbar">
     <div class="navbar-inner">
-      <ul class="nav">
-        <li>
-          <span class="title">Trellino</span>
-        </li>
-      </ul>
+      <span class="title">Welcome, <%= current_user.email %>! </span>
+      <a href="#">
+        <span class="title">Boards</span>
+      </a>
     </div>
   </nav>
   <%= yield %>
