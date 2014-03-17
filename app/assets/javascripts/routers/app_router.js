@@ -18,8 +18,9 @@ window.Trellino.Routers.AppRouter = Backbone.Router.extend({
     var showBoardView = new Trellino.Views.ShowBoard({
       model: board
     });
+
     Trellino.Data.lists = board.lists()
-    Trellino.Data.lists.fetch()
+    Trellino.Data.lists.fetch();
     this._swapView(showBoardView)
   },
 

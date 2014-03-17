@@ -1,12 +1,28 @@
-<div class="card" id="card<%= card.escape("id") %>">
-  <div class="hidden" id="delete-card-button<%= card.escape("id") %>">
-    <button id="delete-card" class="btn-xs btn-danger">
-      <span class="glyphicon glyphicon-ban-circle"></span>
-    </button>
-  </div>
+<div data-toggle="modal" class="card" id="card<%= card.escape("id") %>" data-target="#my-modal">
+
+  <a href="#" class="hidden delete-card" id="delete-card<%= card.escape("id") %>" data-toggle="popover" data-placement="right"
+    data-content="<a href='' id='delete-card' data-card='<%= card.get("id") %>'>Remove Card</a>">
+    <span class="glyphicon glyphicon-flash" style="top: 0px;"></span>
+  </a>
 
   <%= card.escape("title") %>
 
+</div>
 
-
+<div class="modal fade" id="my-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel"><%= card.escape("title") %></h4>
+      </div>
+      <div class="modal-body">
+        <%= card.escape("description") %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>

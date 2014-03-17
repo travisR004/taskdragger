@@ -8,6 +8,4 @@ window.Trellino.Models.Board = Backbone.Model.extend({
 
     return this._lists;
   }
-
-
 });

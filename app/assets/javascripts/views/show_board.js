@@ -13,14 +13,18 @@ window.Trellino.Views.ShowBoard = Backbone.CompositeView.extend({
     "submit form#new-list-form": "createList",
     "click button#delete-board": "deleteBoard",
     "click button#never-mind": "newListForm",
-    "sortupdate .lists": "updateSort"
+    "sortupdate .lists": "updateSort",
+    "sortstart .lists": "startTurn"
+  },
+
+  startTurn: function(event, ui){
+    ui.item.children().toggleClass(".dragged")
   },
 
   updateSort: function(event, ui){
     var i = 1;
     var that = this;
     $(".lists").children().children().each(function(){
-      debugger
       var listId = parseInt($(this).attr("id").slice(9));
       var list = that.model.lists().get(listId);
       list.save({rank: i});
@@ -56,6 +60,7 @@ window.Trellino.Views.ShowBoard = Backbone.CompositeView.extend({
   },
 
   render: function() {
+    this.model.lists().sort()
     var renderedContent = this.template({ board: this.model });
     this.$el.html(renderedContent)
 

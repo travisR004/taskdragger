@@ -108,6 +108,19 @@ button#deleteBoard {
   margin: 10px 22px;
 }
 
+//.board-index {
+//  background-color: white;
+//}
+
+.board {
+ background-color: #4389B1;
+ border-radius: 5px;
+ margin: 5px;
+ height: 100px;
+ text-align: center;
+ padding: 40px;
+}
+
 a {
   text-decoration: none !important;
   font-weight: 600;
@@ -118,12 +131,14 @@ ul {
   list-style-type: none !important;
   padding-left: 0;
   margin: 0;
+  white-space: nowrap;
 }
 
 li {
   padding-top: 2px;
   padding-left: 0;
   width: 250px;
+  display: inline-block;
 }
 
 .list-item {
@@ -153,16 +168,23 @@ button:hover, input[type="submit"]:hover {
 
 .card-input {
   padding: 10px;
-  width: 80%;
+  width: 100%;
+}
+
+button#delete-board {
+  float: bottom;
 }
 
 .card {
   background-color: white;
+  padding: 3px;
   border: solid 1px;
   border-radius: 2px;
-  text-align: center;
+  text-align: left;
   margin-bottom: 2px;
   font-weight: normal;
+  height: 35px;
+  cursor: pointer;
   }
 
 .list {
@@ -186,7 +208,11 @@ a#delete-list {
   color: #393939;
 }
 
-button#delete-card {
+a#delete-card {
+  color: #393939;
+}
+
+#card-modal {
   float: right;
   height: 20px;
 }
@@ -199,11 +225,27 @@ button#delete-card {
   margin: 25px;
 }
 
+.delete-card{
+  float: right;
+  color: #393939;
+}
 
+input {
+  font-weight: normal;
+}
 
+textarea {
+  font-weight: normal;
+}
 
-
-
+.ui-sortable-helper {
+  transform: rotate(3deg);
+  -ms-transform: rotate(3deg); /* IE 9 */
+  -webkit-transform: rotate(3deg); /* Safari and Chrome */
+  -o-transform: rotate(3deg); /* Opera */
+  -moz-transform: rotate(3deg);
+  -webkit-backface-visibility: hidden;
+}
 
 
 

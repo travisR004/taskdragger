@@ -90,7 +90,8 @@ window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
     this.renderSubviews();
     this.makeSortable();
     var listItem = this.$('.list-item');
-    $(".delete-list").popover({html: true, container: listItem, animation: true})
+    var deleteList = this.$(".delete-list");
+    $(deleteList).popover({html: true, container: listItem, animation: true})
     return this
   },
 

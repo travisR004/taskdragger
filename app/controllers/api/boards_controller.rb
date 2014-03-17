@@ -11,7 +11,7 @@ class Api::BoardsController < ApplicationController
     @boards.each { |board| @cards << board.cards }
     @myID = current_user.id
 
-    render :json => @boards
+    render :json => @boards.to_json(include: :lists)
   end
 
   def show

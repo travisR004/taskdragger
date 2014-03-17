@@ -8,24 +8,37 @@ window.Trellino.Views.ShowCard = Backbone.View.extend({
   template: JST['card/show'],
 
   events: {
-    "mouseenter div.card": "showDelete",
-    "mouseleave div.card": "showDelete",
-    "click button#delete-card": "deleteCard",
+    "mouseenter .card": "showPopover",
+    "mouseleave .card": "showPopover",
+    "click .card": "cardModal",
+    "click .delete-card": "popUp",
+    "click #delete-card": "removeCard",
   },
 
-  showDelete: function(){
-    $("#delete-card-button" + this.model.id).toggleClass("hidden")
+  popUp: function(event){
+    event.preventDefault();
+    event.stopPropagation();
+    var card = this.$('.card')
+    $(event.currentTarget).popover({html: true, container: card, animation: true})
   },
 
-  deleteCard: function(event){
-    event.preventDefault;
-    this.model.destroy();
+  showPopover: function(){
+    $("#delete-card" + this.model.id).toggleClass("hidden");
   },
 
   render: function(){
     var renderedContent = this.template({ card: this.model, this: this });
     this.$el.html(renderedContent)
     this.$el.attr("id", "rank-" + this.model.get("rank"))
+    var card = this.$('.card')
+    var deleteCard = this.$('.delete-card')
+    $(deleteCard).popover({html: true, container: card, animation: true})
     return this
-  }
+  },
+
+  removeCard: function(event){
+    event.preventDefault();
+    event.stopPropagation();
+    this.model.destroy()
+  },
 });

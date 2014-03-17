@@ -1,4 +1,6 @@
 window.Trellino.Views.BoardIndex = Backbone.View.extend({
+  className: "board-index",
+
   initialize: function() {
     this.listenTo(this.collection,
                   "add sync change remove reset",
