@@ -30,6 +30,11 @@ body {
 .lists {
   padding-left: 0px;
   width: 1606px;
+  .ui-sortable-placeholder {
+    visibility: visible !important;
+    background-color: #4389B1 !important;
+    border-radius: 5px;
+  }
 }
 
 button#new-list {
@@ -159,13 +164,13 @@ button:hover, input[type="submit"]:hover {
   font-weight: normal;
   }
 
-.ui-sortable-placeholder {
-  visibility: visible !important;
-  background-color: white !important;
-}
-
 .list {
   min-height: 10px;
+  .ui-sortable-placeholder {
+    visibility: visible !important;
+    background-color: white !important;
+    border-radius: 5px;
+  }
 }
 
 .navbar {
