@@ -1,18 +1,22 @@
 <h1> <%= board.escape("title") %></h1>
-<div class="lists"></div>
-<div class="hidden" id="list-form">
-  <form id="new-list-form">
-    <input type="text" name="list[title]" id="list-title">
+<a href="#/" class="index-link"> Back to Index </a>
+    <div id="new-list-button">
+      <button id="new-list" class="btn btn btn-primary">Add List</button>
+    </div>
+    <div class="hidden" id="list-form">
+      <form id="new-list-form">
+        <input type="text" name="list[title]" id="list-title">
 
-    <button id="create-list" class="btn btn-primary">Add List</button>
-      <button id="never-mind" class="btn btn-warning">x</button>
-  </form>
-</div>
+        <button id="create-list" class="btn btn-primary">Add List</button>
+          <button id="never-mind" class="btn btn-warning">x</button>
+      </form>
+    </div>
 
-<div id="new-list-button">
-  <button id="new-list" class="btn btn btn-primary">Add List</button>
-</div>
+<ul class="lists"></ul>
+
+
+
+
 
 <button class="btn btn-danger" id="delete-board">Delete Board</button>
 
-<a href="#/"> Back to Index </a>

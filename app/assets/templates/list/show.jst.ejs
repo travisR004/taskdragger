@@ -1,14 +1,14 @@
-<ul class="list-item" id="list-item<%= list.escape("id") %>">
+<div class="list-item" id="list-item<%= list.escape("id") %>">
 
   <a href="#" class="hidden delete-list" id="delete-list<%= list.escape("id") %>" data-toggle="popover" data-placement="right" data-container="body"
     data-content="<a href='' id='delete-list' data-list='<%= list.get("id") %>'>Remove List</a>">
-    *
+    <span class="glyphicon glyphicon-pushpin" style="top: 0px;"></span>
   </a>
 
   <%= list.escape('title') %>
 
 
-  <div class="list<%= list.escape("id") %>"></div>
+  <div class="list<%= list.escape("id") %> list"></div>
 
   <div class="add-cards<%= list.escape("id") %>">
 
@@ -30,4 +30,4 @@
       <button id="never-mind-card" class="btn btn-warning">x</button>
     </form>
   </div>
-</ul>
+</div>

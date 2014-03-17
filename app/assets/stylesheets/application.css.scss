@@ -1,0 +1,205 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+@import "bootstrap";
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background-color: rgb(35, 113, 159);
+}
+
+.add-card{
+  width: 100%;
+  height: 20px;
+  padding: 0px;
+  text-align: top;
+}
+
+.lists {
+  padding-left: 0px;
+  width: 1606px;
+}
+
+button#new-list {
+  width: 10%;
+  height: 20px;
+  padding: 0px;
+  text-align: top;
+}
+
+a:hover{
+  color: black;
+}
+
+a {
+  color: white;
+  padding: 2px;
+}
+
+h1 {
+  color: white;
+}
+
+.delete-list > a:hover{
+  color: white;
+  background-color: #dbdbdb !important;
+}
+
+.index-link > a:hover {
+  color: white;
+  background-color: #4389B1 !important;
+}
+
+span.title {
+  font-weight: 700;
+  font-size: 28px;
+  position: relative;
+  top: 7px;
+}
+
+.delete-list {
+  float: right;
+  color: black;
+}
+
+input#logout, input#logout{
+  background-color: white;
+}
+
+div#content {
+  margin:0px auto;
+  width: auto;
+
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+div#delete-list{
+  float: right;
+}
+
+div.board_members {
+  margin-left: 22px;
+}
+
+button.newList {
+  margin: 10px;
+}
+
+button#deleteBoard {
+  margin: 10px 22px;
+}
+
+a {
+  text-decoration: none !important;
+  font-weight: 600;
+  color: white;
+}
+
+ul {
+  list-style-type: none !important;
+  padding-left: 0;
+  margin: 0;
+}
+
+li {
+  padding-top: 2px;
+  padding-left: 0;
+  width: 250px;
+}
+
+.list-item {
+  font-weight: bold;
+  padding: 5px;
+  margin: 10px 10px 10px 0px;
+  border: solid 1px;
+  border-radius: 5px;
+  background-color: #dbdbdb;
+}
+
+.hidden {
+	display: none;
+}
+
+button, input[type="submit"] {
+  font-weight: 800;
+  background: transparent;
+  border: 1px dotted;
+  border-radius: 8px;
+}
+
+button:hover, input[type="submit"]:hover {
+  background-color: transparent;
+  color: blue;
+}
+
+.card-input {
+  padding: 10px;
+  width: 80%;
+}
+
+.card {
+  background-color: white;
+  border: solid 1px;
+  border-radius: 2px;
+  text-align: center;
+  margin-bottom: 2px;
+  font-weight: normal;
+  }
+
+.ui-sortable-placeholder {
+  visibility: visible !important;
+  background-color: white !important;
+}
+
+.list {
+  min-height: 10px;
+}
+
+.navbar {
+  color: white;
+  width: 100%;
+  border-radius: 0px;
+  padding: 10px;
+  background-color: #4389B1;
+}
+
+a#delete-list {
+  color: black;
+}
+
+button#delete-card-button {
+  float: right;
+}
+
+.inline {
+  float: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

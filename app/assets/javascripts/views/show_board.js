@@ -15,6 +15,11 @@ window.Trellino.Views.ShowBoard = Backbone.CompositeView.extend({
     "click button#never-mind": "newListForm"
   },
 
+  makeSortable: function(){
+    $(".lists").sortable({
+    })
+  },
+
   removeList: function(list){
     var boardView = this;
     var listShowView =
@@ -42,6 +47,7 @@ window.Trellino.Views.ShowBoard = Backbone.CompositeView.extend({
 
     this.renderSubviews();
 
+    this.makeSortable();
     return this
   },
 
@@ -65,12 +71,7 @@ window.Trellino.Views.ShowBoard = Backbone.CompositeView.extend({
     this.newListForm(event)
     var list = $(event.currentTarget).serializeJSON()["list"];
     list.board_id = this.model.id;
-    // hack
-    if(this.model.lists().length > 0){
-      list.rank = parseInt(this.model.lists().models[this.model.lists().length - 1].escape("rank")) + 1
-    } else {
-      list.rank = 1
-    }
+    list.rank = this.model.lists().length + 1
     this.model.lists().create(list)
     $('#list-title').val("");
    }

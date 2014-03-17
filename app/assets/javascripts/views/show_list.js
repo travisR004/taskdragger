@@ -1,11 +1,14 @@
 window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
   initialize: function(){
+    this.$el = $('<li class="inline"></li>')
     this.listenTo(this.model, 'sync add change reset refresh', this.render);
     this.listenTo(this.model, 'add sync', this.makeDroppable);
-    this.listenTo(this.model.cards(), 'add', this.addCard);
+    this.listenTo(this.model.cards(), 'add sync', _.debounce(this.addCard, 100));
     this.listenTo(this.model.cards(), 'remove', this.removeCard);
     this.refreshCards();
   },
+
+  orderField: "rank",
 
   template: JST['list/show'],
 
@@ -16,20 +19,22 @@ window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
     "mouseenter .list-item": "showDelete",
     "mouseleave .list-item": "showDelete",
     "click .delete-list": "showPopover",
-    "click #delete-list": "removeList",
+    "click #delete-list": "removeList"
   },
 
-  makeDroppable: function(){
+  makeSortable: function(){
     var list = this.model
     $(".list" + list.id).sortable({
-      revert: true,
-      connectWith: ".list" + list.id
-    });
-    this.$el.children().droppable({
-      drop: function(event, ui) {
-        $(this).droppable('option', 'accept', ui.draggable);
-        var model =$(ui.draggable).data("backbone-view").model
-        model.save({"list_id": list.id}, {wait: true})
+      connectWith: ".list",
+      update: function(event, ui, list){
+        var i = 1
+        $(this).children().each(function(){
+          var cardId = parseInt($(this).children().attr("id").slice(4))
+          var card = Trellino.Data.cards.get(cardId)
+          var listId = parseInt($(this).parent().attr("class").slice(4))
+          card.save({"list_id": listId, "rank": i})
+          i ++;
+        })
       }
     });
   },
@@ -75,7 +80,7 @@ window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
     var renderedContent = this.template({ list: this.model });
     this.$el.html(renderedContent)
     this.renderSubviews();
-    this.makeDroppable();
+    this.makeSortable();
     return this
   },
 
@@ -96,6 +101,7 @@ window.Trellino.Views.ShowList = Backbone.CompositeView.extend({
       card.rank = 1
     }
     this.model.cards().create(card)
+    Trellino.Data.cards.fetch()
     $('#card-title' + this.model.id).val("");
     $('#card-description' + this.model.id).val("");
    }

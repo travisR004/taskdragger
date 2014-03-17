@@ -1,11 +1,15 @@
 window.Trellino.Collections.Cards = Backbone.Collection.extend({
   initialize: function(models, options){
-    this.list = options.list;
+    // this.list = options.list;
   },
 
   url: "/api/cards",
 
   model: Trellino.Models.Card,
+
+  comparator: function(card){
+    return card.get("rank")
+  },
 
   getOrFetch: function(id){
     var model;

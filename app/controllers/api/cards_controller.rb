@@ -10,6 +10,11 @@ class Api::CardsController < ApplicationController
     end
   end
 
+  def index
+    @cards = Card.all
+    render :json => @cards
+  end
+
   def update
     @card = Card.find(params[:id])
     @card.update_attributes(card_params)

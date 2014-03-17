@@ -6,6 +6,7 @@ window.Trellino = {
   Data: {},
   initialize: function() {
     window.Trellino.Data.boards = new Trellino.Collections.Boards();
+    window.Trellino.Data.cards = new Trellino.Collections.Cards()
     new Trellino.Routers.AppRouter();
     Backbone.history.start();
   }
