@@ -86,7 +86,6 @@ window.Trellino.Views.ShowBoard = Backbone.CompositeView.extend({
    },
 
   createList: function(event){
-    debugger
     event.preventDefault();
     this.newListForm(event)
     var list = $(event.currentTarget).serializeJSON()["list"];
