@@ -9,11 +9,14 @@
     </li>
   <% }) %>
 </ul>
-
 <div class="hidden" id="board-form">
-  <%= JST['board/new']() %>
+  <form id="new-board-form">
+    <input type="text" name="board[title]">
+
+    <button id="create-board" class="btn btn-primary">Create Board</button>
+    <button id="never-mind-board" class="btn btn-warning">x</button>
+  </form>
 </div>
 
-<div id="new-board-button">
-<button class="btn btn-primary" id="new-board">New Board</button>
-</div>
+
+<button class="btn btn-primary" id="new-board-button">New Board</button>

@@ -10,8 +10,9 @@ window.Trellino.Views.BoardIndex = Backbone.View.extend({
   template: JST['board/index'],
 
   events: {
-    "click button#new-board": "newBoardForm",
-    "submit form#new-board-form": "addBoard"
+    "click button#new-board-button": "newBoardForm",
+    "click .create-board": "addBoard",
+    "click button#never-mind-board": "newBoardForm"
   },
 
   render: function(){
@@ -21,23 +22,23 @@ window.Trellino.Views.BoardIndex = Backbone.View.extend({
   },
 
   newBoardForm: function(event){
-     event.preventDefault()
-     $("#board-form").toggleClass("hidden")
-     $("#new-board-button").toggleClass("hidden")
+    event.preventDefault()
+    $("#board-form").toggleClass("hidden")
+    $("#new-board-button").toggleClass("hidden")
    },
 
    addBoard: function(event){
-       event.preventDefault();
-       $("#board-form").toggleClass("hidden")
-       var board = $(event.currentTarget).serializeJSON()["board"];
-       var newBoard = new Trellino.Models.Board(board)
-       newBoard.save({},{
-         success: function(){
-           Trellino.Data.boards.add(newBoard)
-           Backbone.history.navigate("boards/" + newBoard.id, {trigger: true})
-         }
-       })
-     }
+     event.preventDefault();
+     $("#board-form").toggleClass("hidden")
+     var board = $(event.currentTarget).serializeJSON()["board"];
+     var newBoard = new Trellino.Models.Board(board)
+     newBoard.save({},{
+       success: function(){
+         Trellino.Data.boards.add(newBoard)
+         Backbone.history.navigate("boards/" + newBoard.id, {trigger: true})
+       }
+     })
+   }
 
 
 });
