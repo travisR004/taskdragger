@@ -11,7 +11,7 @@ window.Trellino.Views.BoardIndex = Backbone.View.extend({
 
   events: {
     "click button#new-board-button": "newBoardForm",
-    "click .create-board": "addBoard",
+    "click #create-board": "addBoard",
     "click button#never-mind-board": "newBoardForm"
   },
 
@@ -30,7 +30,7 @@ window.Trellino.Views.BoardIndex = Backbone.View.extend({
    addBoard: function(event){
      event.preventDefault();
      $("#board-form").toggleClass("hidden")
-     var board = $(event.currentTarget).serializeJSON()["board"];
+     var board = $(event.currentTarget).parent().serializeJSON()["board"];
      var newBoard = new Trellino.Models.Board(board)
      newBoard.save({},{
        success: function(){
