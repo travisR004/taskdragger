@@ -1,4 +1,4 @@
-<div data-toggle="modal" class="card" id="card<%= card.escape("id") %>" data-target="#my-modal">
+<div data-toggle="modal" class="card" id="card<%= card.escape("id") %>" data-target="#my-modal-<%= card.escape("id") %>">
 
   <a href="#" class="hidden delete-card" id="delete-card<%= card.escape("id") %>" data-toggle="popover" data-placement="right"
     data-content="<a href='' id='delete-card' data-card='<%= card.get("id") %>'>Remove Card</a>">
@@ -9,7 +9,7 @@
 
 </div>
 
-<div class="modal fade" id="my-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="my-modal-<%= card.escape("id") %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
