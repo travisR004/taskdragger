@@ -6,6 +6,8 @@ window.Trellino.Views.BoardIndex = Backbone.View.extend({
                   "add sync change remove reset",
                   _.debounce(this.render, 50))
   },
+	
+	
 
   template: JST['board/index'],
 
