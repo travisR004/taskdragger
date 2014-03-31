@@ -2,8 +2,11 @@
   <% boards.forEach(function(board){ %>
     <li>
       <a href="#/boards/<%= board.escape("id") %>">
-      <div class="board">
-          <%= board.escape('title')  %>
+      <div class="board" >
+				<button class="close upper-right" data-id="<%= board.escape("id") %>">&times;</button>
+				<div class="board-title">
+					<%= board.escape('title')  %>	
+				</div>
       </div>
       </a>
     </li>

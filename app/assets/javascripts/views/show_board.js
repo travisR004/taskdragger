@@ -11,7 +11,6 @@ window.Trellino.Views.ShowBoard = Backbone.CompositeView.extend({
   events: {
     "click button#new-list": "newListForm",
     "submit form#new-list-form": "createList",
-    "click button#delete-board": "deleteBoard",
     "click button#never-mind": "newListForm",
     "sortupdate .lists": "updateSort",
     "sortstart .lists": "startTurn"
@@ -68,15 +67,6 @@ window.Trellino.Views.ShowBoard = Backbone.CompositeView.extend({
 
     this.makeSortable();
     return this
-  },
-
-  deleteBoard: function(event){
-    event.preventDefault();
-    this.model.destroy({
-         success: function(){
-           Backbone.history.navigate("", {trigger: true})
-         }
-       });
   },
 
   newListForm: function(event){
