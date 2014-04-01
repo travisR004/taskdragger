@@ -15,6 +15,5 @@ Trellino::Application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create, :destroy]
-  get "demo", to: "users#demo"
   root to: 'static_pages#root'
 end
