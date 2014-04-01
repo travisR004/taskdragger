@@ -3,12 +3,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:user][:email])
+    @user = User.find_by_email(params[:user][:email])
     
-    if user && user.verify_password(params[:user][:password])
-      user.reset_session_token!
-      session[:session_token] = user.session_token
-      
+    if @user && @user.verify_password(params[:user][:password])
+      login!
       redirect_to root_url
     else
       render :json => "Invalid login."
