@@ -1,4 +1,5 @@
 class Api::ListsController < ApplicationController
+  before_filter :require_login!
 
   def index
     @lists = List.where("board_id = ?", params[:board_id])

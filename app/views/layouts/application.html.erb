@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Trellino</title>
+  <title>Task Dragger</title>
 
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -17,7 +17,7 @@
                  <span class="icon-bar"></span>
                  </button>
                  <a href="#">
-                   <span class="title">Trellino</span>
+                   <span class="title">Task Dragger</span>
                  </a>
                  <div class="collapse navbar-collapse" id="nav-collapse">
                          <ul class="nav navbar-nav">
@@ -30,6 +30,7 @@
                            <% else %>
                            <li data-toggle='modal' data-target="#loginModal"><a href="#">Sign In</a></li>
                            <li><%= link_to "Sign up", new_user_url %></li>
+													 <li><%= link_to "Demo This Site", demo_user_url
                            <% end %>
                          </ul>
 
@@ -37,7 +38,10 @@
 
     </div>
   </nav>
-  <%= yield %>
+	<%if current_user%>
+  	<%= yield %>
+	<% else %>
+	<% end %>
 
   <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">

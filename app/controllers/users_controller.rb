@@ -16,6 +16,10 @@ class UsersController < ApplicationController
       render json: { errors: @user.errors.full_messages }
     end
   end
+  
+  def demo
+    render :new
+  end
 
   private
   def user_params

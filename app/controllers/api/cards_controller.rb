@@ -1,5 +1,6 @@
 class Api::CardsController < ApplicationController
-
+  before_filter :require_login!
+  
   def create
     @card = Card.new(card_params)
 
