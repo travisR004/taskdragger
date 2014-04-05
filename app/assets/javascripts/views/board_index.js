@@ -13,7 +13,7 @@ window.Trellino.Views.BoardIndex = Backbone.View.extend({
     "click button#new-board-button": "newBoardForm",
     "click #create-board": "addBoard",
     "click button#never-mind-board": "newBoardForm",
-		"click .close": "deleteBoard"
+    "click .close": "deleteBoard"
   },
 
   render: function(){
@@ -21,14 +21,14 @@ window.Trellino.Views.BoardIndex = Backbone.View.extend({
     this.$el.html(renderedContent)
     return this
   },
-	
-	deleteBoard: function(event){
-		event.preventDefault();
-		event.stopPropagation();
-		var boardId = $(event.target).data("id");
-		var board = this.collection.get(boardId);
-		board.destroy();
-	},
+  
+  deleteBoard: function(event){
+    event.preventDefault();
+    event.stopPropagation();
+    var boardId = $(event.target).data("id");
+    var board = this.collection.get(boardId);
+    board.destroy();
+  },
 
   newBoardForm: function(event){
     event.preventDefault()

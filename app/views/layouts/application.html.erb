@@ -5,7 +5,7 @@
 
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-	  <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
 </head>
 <body class="body">
   <nav class="navbar" role="navigation">
@@ -26,12 +26,12 @@
                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
                              <ul class="dropdown-menu">
                                <li><%= link_to "Sign Out", session_url, :method => :delete %></li>
-															 
+                               
                              </ul>
                            <% else %>
-														 <li><%= link_to "Check out the site as a demo user!", demo_url %></li>
-	                           <li data-toggle='modal' data-target="#loginModal"><a href="#">Sign In</a></li>
-	                           <li><%= link_to "Sign up", new_user_url %></li>
+                             <li><%= link_to "Check out the site as a demo user!", demo_url %></li>
+                             <li data-toggle='modal' data-target="#loginModal"><a href="#">Sign In</a></li>
+                             <li><%= link_to "Sign up", new_user_url %></li>
                            <% end %>
                          </ul>
 
@@ -39,7 +39,7 @@
 
     </div>
   </nav>
-  	<%= yield %>
+    <%= yield %>
 
   <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -50,7 +50,7 @@
           </div>
           <div class="modal-body">
             <%= render 'sessions/login_form' %>
-						<a href="/demo" id="demo" class="btn btn-primary">Sign in as Demo User</a>
+            <a href="/demo" id="demo" class="btn btn-primary">Sign in as Demo User</a>
           </div>
         </div>
       </div>
